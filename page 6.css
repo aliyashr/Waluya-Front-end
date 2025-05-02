@@ -36,7 +36,7 @@ body {
     align-items: center;
     text-align: center;
     padding: 40px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 form {
@@ -47,7 +47,7 @@ form {
 .formbox h1 {
     white-space: nowrap;
     font-size: 27px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: #15388F;
     font-weight: 600;
 }
@@ -55,7 +55,7 @@ form {
 .input-box {
     position: relative;
     margin-bottom: 5px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .input-box input {
@@ -74,7 +74,7 @@ form {
     width: 75%;
 }
 
-.signin-button {
+.signup-button {
     width: 75%;
     padding: 12px;
     border-radius: 8px;
@@ -84,20 +84,20 @@ form {
     transition: opacity 1s;
 }
 
-.signin-button:hover {
+.signup-button:hover {
     opacity: 0.8;
 }
 
-.signin-button:active {
+.signup-button:active {
     opacity: 0.3;
 }
 
-.signup {
-    margin-top: 25px;
+.login {
+    margin-top: 10px;
     font-size: 10px;
 }
 
-.signup-link {
+.login-link {
     color: #589EFF;
     font-size: 12px;
     text-decoration: underline;
@@ -114,6 +114,9 @@ form {
     margin: 10px 8px;
 }
 
+.formbox p {
+    font-size: 12px;
+}
 .left-section {
     width: 35%;
     display: flex;
@@ -122,7 +125,7 @@ form {
     justify-content: center;
     box-sizing: border-box;
     padding: 40px;
-    background: url('Group 1000002043 (1).png') no-repeat center center;
+    background: url('asset/Group\ 1000002043\ \(1\).png') no-repeat center center;
     background-size: cover;
     position: relative;
     z-index: 1;

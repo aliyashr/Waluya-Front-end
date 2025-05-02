@@ -35,7 +35,7 @@ body {
     justify-content: center;
     padding: 40px;
     box-sizing: border-box;
-    background: url('Group 1000002043 (1).png') no-repeat center center;
+    background: url('asset/Group\ 1000002043\ \(1\).png') no-repeat center center;
     background-size: cover; /* atau 'contain' tergantung kebutuhan */
     position: relative;
     z-index: 1;
@@ -73,7 +73,7 @@ body {
 }
 
 .formbox {
-    position: absolute;
+    position: relative;
     right: 0;
     width: 65%;
     height: 100%;
@@ -82,7 +82,7 @@ body {
     align-items: center;
     text-align:center;
     padding: 40px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 form{
