@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #C3DCFF, #355F99);
+}
+
+.gambar {
+  position: relative;
+  width: 1000px;
+  height: 475px;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  overflow: hidden;
+  background: white;
+}
+
+.left-section {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+    background: url('Group 1000002043 (1).png') no-repeat center center;
+    background-size: cover; /* atau 'contain' tergantung kebutuhan */
+    position: relative;
+    z-index: 1;
+}
+
+.logo-w {
+    width: 100%;
+    height: auto;
+    z-index: 1; /* pastikan tetap di atas background */
+}
+
+.welcome-text {
+    color: black;
+    text-align: center;
+    padding: 20px;
+    z-index: 3;
+}
+
+.welcome-text h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+}
+
+.welcome-text p {
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+}
+
+.formbox p{
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.formbox {
+    position: absolute;
+    right: 0;
+    width: 65%;
+    height: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    text-align:center;
+    padding: 40px;
+    margin-top: 30px;
+}
+
+form{
+    width: 100%;
+    text-align: center;
+}
+
+.formbox h1{
+    white-space: nowrap;
+    font-size: 27px;
+    margin-bottom: 10px 0;
+    color: #15388F;
+    font-weight: 600;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
+
+.input-box input{
+    width: 75%;
+    padding: 12px;
+    background: #b8b8b8;
+    border-radius: 8px;
+    border: none;
+    color: #545454;
+}
+
+.forgotpass-link {
+    margin: 0px 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10px;
+    text-align: left;
+    width: 75%;
+    margin-top: 0px;
+}
+
+.signin-button {
+    width:75%;
+    padding: 12px;
+    border-radius: 8px;
+    background: #15388F;
+    color: white;
+    font-weight: 600;
+    transition: opacity 1s;
+    
+}
+
+.signin-button:hover {
+    opacity: 0.8;
+}
+
+.signin-button:active {
+    opacity: 0.3;
+}
+.signup {
+    margin-top: 25px;
+    font-size: 10px;
+}
+
+.signup-link {
+    color: #589EFF;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.social-icons a {
+ display: inline-flex;
+ height: 42px;
+ justify-content: center;
+ height: 40px;
+ border: 1.5px solid #589EFF;
+ padding: 5px;
+ border-radius: 8px;
+ margin: 10px 8px;
+}
+
