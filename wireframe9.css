@@ -1,0 +1,123 @@
+.Login {
+    font-size: 24px;
+    font-family: Poppins, sans-serif;
+    vertical-align: middle;
+    font-weight: 400;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 8px 42px;
+    text-align: center;
+    border-width: 2;
+    border-color: #15388F;
+    cursor: pointer;
+}
+
+.Register {
+    font-size: 24px;
+    font-family: Poppins, sans-serif;
+    vertical-align: middle;
+    font-weight: 800;
+    background-color: #15388F;
+    border-radius: 8px;
+    padding: 8px 30px;
+    text-align: center;
+    color: #FFFFFF;
+    border-width: 0px;
+    border-color: #545454;
+    cursor: pointer;
+}
+
+.AboutUs {
+    position: relative;
+    font-size: 32px;
+    font-family: Poppins, sans-serif;
+    vertical-align: middle;
+    font-weight: 700;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    text-align: center;
+    color: #15388F;
+    padding: 16px 42px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition-delay: 0.1ms;
+}
+
+.Send {
+    border: none;
+    background-color: #589EFF;
+    width: 472px;
+    height: 70px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.youremail {
+    border-width: 4px;
+    border-color: #589EFF;
+    background-color: #15388F;
+    width: 472px;
+    height: 70px;
+    border-radius: 12px;
+    position: relative;
+    margin: 50px auto;
+    cursor: text;
+}
+
+.type {
+    border-width: 4px;
+    border-color: #589EFF;
+    background-color: #15388F;
+    width: 472px;
+    height: 212px;
+    border-radius: 12px;
+    position: relative;
+    margin: 50px auto;
+    cursor: text;
+}
+
+.text {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+.img {
+    width: 322px;
+    height: 397px;
+    left: 32px;
+    top: 2385px;
+    position: absolute;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.img:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in;
+}
+
+.Send:hover {
+    background-color: skyblue;
+    color: #589EFF;
+}
+
+.AboutUs:hover {
+    background-color: #BCBCBC;
+    color: #1E1E1E;
+}
+
+.Tentang {
+    cursor: pointer;
+}
+
+.Register:hover {
+    background-color: #a7a7a7;
+    color: #FFFFFF;
+}
+
+.Login:hover {
+    background-color: #f1f1f1;
+    color: #FFFFFF;
+}
