@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="wireframe7.css">
+</head>
+<style>
+    /* ===== Layout ===== */
+    body {
+        display: flex;
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .sidebar {
+        width: 80px;
+        background-color: #fff;
+        border-right: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1rem;
+        position: fixed;
+        height: 100vh;
+        box-shadow: 11px 0px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .main-content {
+        margin-left: 80px;
+        /* Equal to sidebar width */
+        padding: 2rem;
+        width: 100%;
+    }
+
+    /* ===== Sidebar ===== */
+    .logo img {
+        border: none;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .logo img:hover {
+        transform: scale(1.2);
+        transition-duration: 0.3s;
+    }
+
+    .finder {
+        margin-top: -1rem;
+        border: none;
+        background: none;
+    }
+
+    .finder:hover {
+        transform: scale(1.2);
+        transition-duration: 0.3s;
+    }
+
+    .exit {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-top: 570px;
+    }
+
+    .exit:hover {
+        transform: scale(1.2);
+        transition-duration: 0.3s;
+    }
+
+    .chat {
+        background-color: #ffffff;
+        border: none;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .chat:hover {
+        transform: scale(1.2);
+        transition-duration: 0.3s;
+    }
+
+    /* ===== Header ===== */
+    header h1 {
+        margin: 0rem;
+        margin-top: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: Poppins, sans-serif;
+        color: #1e3a8a;
+    }
+
+    header h2 {
+        margin-top: 1rem;
+        font-family: Poppins, sans-serif;
+        color: #589eff;
+    }
+
+    header h3 {
+        margin-top: 2rem;
+        font-family: Poppins, sans-serif;
+        color: #ff5858;
+    }
+
+    /* ===== Category Filters ===== */
+
+    .message-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .messages-card {
+        background-color: #c3dcff;
+        border-radius: 15px;
+        padding: 1rem;
+        text-align: left;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .messages-text {
+        width: 100%;
+        border-radius: 16px;
+        margin-bottom: 0.5rem;
+        background-color: #ffffff;
+        text-align: left;
+    }
+
+    .date {
+        font-size: 12px;
+        color: #22559c;
+        position: relative;
+        margin-bottom: 0rem;
+    }
+
+    .user {
+        position: relative;
+        font-size: 20px;
+        color: #15388f;
+        margin-top: 0rem;
+        margin-bottom: -0.5rem;
+    }
+
+    .message-text {
+        font-size: 0.95rem;
+        color: #15388f;
+        line-height: 1.4;
+        background-color: white;
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+    }
+
+    .message-user {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .new-messages .message-card {
+        background-color: #c3dcff;
+    }
+
+    .section-subtitle {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    .sort-btn {
+        background-color: transparent;
+        border: none;
+        color: #3b82f6;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: flex-start;
+    }
+    .sort-btn:hover {
+        text-decoration: underline;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+        background: none;
+        border-radius: 50%;
+    }
+
+    .messages-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+
+    .all-messages {
+        margin-top: 2rem;
+    }
+
+    .all-messages h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e3a8a;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .all-messages .message-grid {
+        margin-top: 1rem;
+    }
+
+    .section-subtitle.red {
+        color: #ef4444;
+    }
+</style>
+
+<body>
+    <aside class="sidebar">
+        <button style="border: none; background-color: white;" class="logo">
+            <img src="W biru.png" />
+        </button>
+        <button class="finder">
+            <img src="Group 1000002072.png"></button>
+        <button class="chat">
+            <img src="Union.png" />
+        </button>
+        <button class="exit">
+            <img src="Group 7.png">
+        </button>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <h2>User Messages</h2>
+        </header>
+        <section class="all-messages">
+            <h3 class="section-subtitle red">New Messages</h3>
+            <div class="messages-header"></div>
+            <div class="message-grid">
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+        </section>
+
+        <section class="all-messages">
+            <div class="messages-header">
+                <h3 class="section-subtitle">All Messages</h3>
+                <button class="sort-btn"><img src="filter-left.png" /> Sort</button>
+            </div>
+
+            <div class="message-grid">
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+                <div class="messages-card">
+                    <div class="message-user">
+                        <img src="Group 1000002026.png" class="avatar" />
+                        <div>
+                            <h1 class="user">User</h1>
+                            <p class="date">21 Februari 2025</p>
+                        </div>
+                    </div>
+                    <p class="message-text">
+                        Your shop has a great selection, but the tanks need better maintenance,
+                        and product labels could be clearer. More staff assistance and an online update
+                        would also help. Hope this feedback is useful!<br />Best,
+                    </p>
+                </div>
+
+                <!-- Duplicate this block 7+ times as shown in your UI -->
+            </div>
+        </section>
+    </main>
+    </div>
