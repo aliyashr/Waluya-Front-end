@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="wireframe7.css">
+</head>
+<style>
+    /* ===== Layout ===== */
+body {
+    display: flex;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  .sidebar {
+    width: 80px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 11px 0px 4px rgba( 0, 0, 0, 0.25);
+  }
+  
+  .main-content {
+    margin-left: 80px; /* Equal to sidebar width */
+    padding: 2rem;
+    width: 100%;
+  }
+  
+  /* ===== Sidebar ===== */
+  .logo img {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+  .logo img:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+  }
+  
+  .finder {
+    margin-bottom: 1rem;
+    border: none;
+    background: none;
+  }
+  .finder:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+  }
+  
+  .exit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 570px;
+  }
+  .exit:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+  }
+  
+  .chat {
+    background-color: #ffffff;
+    border:none;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .chat:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+  }
+  
+  /* ===== Header ===== */
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e3a8a;
+  }
+  
+  header h2 {
+    margin-top: 0.5rem;
+    color: #3b82f6;
+  }
+  
+  /* ===== Category Filters ===== */
+  .category-filters {
+    margin-top: 2rem;
+  }
+  
+  .category-filters .tags {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tag {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #1e3a8a;
+    background-color: white;
+    cursor: pointer;
+    color: #1e3a8a;
+    font-weight: 500;
+  }
+  .tag:hover {
+    background-color: #1e3a8a;
+    color: white;
+  }
+  
+  .tag.active {
+    background-color: #1e3a8a;
+    color: white;
+  }
+  .tag.active:hover {
+    background-color: #c3dcff;
+    color: #1e3a8a;
+  }
+  
+  .add-product-btn {
+    margin-top: 1rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .add-product-btn:hover {
+    background-color: #1e3a8a;
+    color: white;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .product-card {
+    background-color: #bfdbfe;
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .product-card:hover {
+    transform: scale(1.1);
+    transition-duration: 0.3s;
+  }
+  
+  .product-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-card h3 {
+    margin: 0.5rem 0;
+    color: #1e3a8a;
+    font-size: 1.1rem;
+  }
+  
+  .product-card p {
+    font-size: 0.9rem;
+    color: #1f2937;
+  }
+  
+  .edit-btn {
+    margin-top: 0.5rem;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .edit-btn:hover {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+</style>
+<body>
+  <aside class="sidebar">
+    <button style="border: none; background-color: white;" class="logo">
+      <img src="W biru.png"/>
+    </button>
+    <button class="finder">
+        <img src="Group 1000002072.png"></button>
+      <button class="chat">
+        <img src="Union.png"/>
+      </button>
+      <button class="exit">
+        <img src="Group 7.png">
+      </button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1>Admin Dashboard</h1>
+      <h2>Manage Products</h2>
+    </header>
+    <section class="category-filters">
+      <span>Categories</span>
+      <div class="tags">
+        <button class="tag active">Ikan</button>
+        <button class="tag">Obat Ikan</button>
+        <button class="tag">Makanan Ikan</button>
+        <button class="tag">Peralatan Aquarium</button>
+        <button class="tag">+</button>
+      </div>
+      <button class="add-product-btn">+ Add Product</button>
+    </section>
+
+    <section class="product-grid">
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
