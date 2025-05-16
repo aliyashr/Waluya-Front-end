@@ -186,7 +186,7 @@
       border-radius: 24px;
       cursor: pointer;
       position: fixed;
-      transform: translateX(435px) translateY(360px);
+      transform: translateX(380px) translateY(360px);
     }
 
     .submit-btn:disabled {
@@ -417,6 +417,16 @@
       height: auto;
       border-radius: 12px;
     }
+    .trash-image {
+      width: 66px;
+      height: 66px;
+      transform: translateX(800px) translateY(380px);
+      border-radius: 24px;
+    }
+    .trash-image:hover {
+      background-color: #15388f;
+      color: white;
+    }
 
     .card-content {
       text-align: center;
@@ -453,9 +463,8 @@
       align-self: flex-start;
       font-size: 14px;
       color: #ff1100;
-      position: absolute;
-      margin-top: -165px;
-      margin-left: 450px;
+      position: fixed;
+      transform: translateX(450px) translateY(220px);
       font-family: Poppins, sans-serif;
       font-weight: 100px;
     }
@@ -476,8 +485,7 @@
 
     #addBtn {
       padding: 12px 24px;
-      background-color: #589eff;
-      /* dark blue */
+      background-color: #15388f;
       color: white;
       font-size: 16px;
       font-weight: 600;
@@ -485,14 +493,13 @@
       border: none;
       border-radius: 24px;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      transition: background-color 0.3s;
       margin-top: 20px;
     }
 
     #addBtn:hover:enabled {
-      background-color: #1d4ed8;
-      /* brighter blue on hover */
-      transform: translateY(-2px);
+      background-color: #c3dcff;
+      color: #15388f;
     }
 
     #addBtn:disabled {
@@ -715,6 +722,7 @@
           <div id="qtyDisplay">0</div>
           <button id="plus">+</button>
         </div>
+        <img src="icon sampah.png" class="trash-image">
 
         <!-- Submit -->
         <button class="submit-btn" id="addBtn" disabled>Tambah Produk</button>
