@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+body{
+  margin-left: 100px; /* Geser seluruh konten agar tidak tertutup navbar */
+  padding: 40px; 
+}
+
+.navbar {
+    position: fixed;
+    height:  100vh;
+    width: 80px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding: 20px 20px;
+    background-color: white;
+    box-shadow: 5px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.katalog-logo {
+    padding: 15px 0;
+}
+
+.logout {
+    margin-top: 170px;
+}
+
+.section-title {
+    color: #15388F;
+    margin-bottom:10px;
+}
+
+.user-msg {
+    color: #589EFF;
+    font-size: 19px;
+    margin-bottom: 20px;
+
+}
+
+.new-msg {
+    color: #FF5858;
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.card-container-new-msg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin: 0 auto 40px;
+}
+
+.card {
+    background-color: #C3DCFF;
+    border-radius: 12px;
+    width: 100%;
+    padding: 15px;
+    max-width: none;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    margin-right: 15px;
+}
+
+.user-info .username {
+    color:#15388F;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.user-info .date {
+    color: #22559C;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.msg-box {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    line-height: 1.2;
+}
+
+.msg-box p {
+    color:#15388F;
+    font-size: 12px;
+}
+
+.all-msg {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.all-msg h2{
+    color:#15388F;
+    font-size: 19px;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-container span {
+    color: #589EFF;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin: 0 auto 40px;
+}
+
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr); /* jadi 3 kolom */
+  }
+
+  .card-container-new-msg{
+    grid-template-columns: repeat(3, 1fr); /* jadi 3 kolom */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* jadi 2 kolom */
+  }
+  .card-container-new-msg{
+    grid-template-columns: repeat(2, 1fr); /* jadi 3 kolom */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr; /* jadi 1 kolom di HP */
+  }
+  .card-container-new-msg{
+    grid-template-columns: repeat(1fr); /* jadi 3 kolom */
+  }
+}
