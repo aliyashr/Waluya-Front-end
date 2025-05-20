@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Product Modal</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #e0f0ff;
+    }
+
+    .modal {
+      width: 904.76px;
+      height: 606px;
+      transform: translate(180px)translateY(130px);
+      background: #c3edff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      transition:3ms ease-in;
+    }
+
+    #productModal {
+      position: fixed;
+      top: -200px;
+      left: -180px;
+      width: 1440px;
+      height: 1024px;
+      background-color: rgba(0, 76, 153, 0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .hidden {
+      display: none;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 76, 153, 0.4);
+      /* translucent bluish overlay */
+      display: none;
+      /* hidden by default */
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    /* Optional: show the modal with display: flex */
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .image-box {
+      max-width: 396.3px;
+      width: 100%;
+      height: 345.31px;
+      transform: translateX(30px)translateY(30px);
+      background: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      position: fixed;
+    }
+
+    textarea {
+      max-width: 412px;
+      width: 100%;
+      height: 165px;
+      resize: none;
+      padding: 8px;
+      border-radius: 5px;
+      position: absolute;
+      transform: translateX(445px) translateY(30px);
+      border: 1px solid #15388f;
+      background-color: #c3edff;
+      font-family: Poppins, sans-serif;
+      font-size: 15.76px;
+    }
+
+
+    input[type="text"] {
+      max-width: 396.3px;
+      width: 100%;
+      transform: translateX(20px) translateY(385px);
+      font-size: 40px;
+      font-family: Poppins, sans-serif;
+      font-weight: 700;
+      border: none;
+      border-radius: 16px;
+      background: none;
+      align-items: center;
+      display: flex;
+      outline: none;
+      color: #15388f;
+      text-align: center;
+
+    }
+
+    input[type="number"] {
+      max-width: 408px;
+      width: 100%;
+      transform: translateX(445px) translateY(280px);
+      position: fixed;
+      flex-direction: row;
+      padding: 10px;
+      font-size: 20px;
+      font-family: Poppins, sans-serif;
+      font-weight: lighter;
+      border: none;
+      border-radius: 16px;
+      background-color: #c3dcff;
+      color: #15388f;
+    }
+
+    select {
+      max-width: 430px;
+      width: 100%;
+      transform: translateX(445px) translateY(330px);
+      position: absolute;
+      padding: 10px;
+      border-radius: 16px;
+      font-family: Poppins, sans-serif;
+      font-size: 18px;
+      font-weight: lighter;
+      border: none;
+      background-color: #c3dcff;
+    }
+
+    .qty-box {
+      display: flex;
+      max-width: 396.3px;
+      width: 100%;
+      align-items: center;
+      flex-shrink: 0;
+      justify-content: space-between;
+      box-sizing: border-box;
+      height: 66.25px;
+      position: absolute;
+      border: 2.12px solid #15388f;
+      border-radius: 12.71px;
+      transform: translateX(30px) translateY(380px);
+      background-color: #c3dcff;
+      font-size: 21.19px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      ;
+    }
+
+    .qty-box button {
+      width: 62.78px;
+      height: 66.25px;
+      font-size: 32.72px;
+      font-weight: 700;
+      background-color: #c3dcff;
+      border: 2.12px solid #15388f;
+      border-radius: 12.71px;
+      cursor: pointer;
+      position: relative;
+      align-content: flex-end;
+    }
+
+    .qty-box button:hover {
+      background-color: #15388f;
+      color: #c3edff;
+    }
+
+    .submit-btn {
+      padding: 12px 20px;
+      max-width: 335.51px;
+      width: 100%;
+      height: 66px;
+      background-color: #15388f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      position: fixed;
+      transform: translateX(380px) translateY(360px);
+    }
+
+    .submit-btn:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    #charCount {
+      font-size: 0.9em;
+      color: #d00;
+      text-align: right;
+    }
+
+    body {
+      display: flex;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .sidebar {
+      width: 80px;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1rem;
+      position: fixed;
+      height: 100vh;
+      box-shadow: 11px 0px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .main-content {
+      margin-left: 80px;
+      /* Equal to sidebar width */
+      padding: 2rem;
+      width: 100%;
+    }
+
+    /* ===== Sidebar ===== */
+    .logo img {
+      border: none;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .logo img:hover {
+      transform: scale(1.2);
+      transition-duration: 0.3s;
+    }
+
+    .finder {
+      margin-top: 0rem;
+      border: none;
+      background: none;
+    }
+
+    .finder:hover {
+      transform: scale(1.2);
+      transition-duration: 0.3s;
+    }
+
+    .exit {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 570px;
+    }
+
+    .exit:hover {
+      transform: scale(1.2);
+      transition-duration: 0.3s;
+    }
+
+    .chat {
+      background-color: #ffffff;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .chat:hover {
+      transform: scale(1.2);
+      transition-duration: 0.3s;
+    }
+
+    /* ===== Header ===== */
+    header h1 {
+      margin: 0rem;
+      margin-top: 2rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    header h2 {
+      margin-top: 1rem;
+      color: #589eff;
+    }
+
+    /* ===== Category Filters ===== */
+    .category-filters {
+      margin-top: 2rem;
+    }
+
+    .category-filters .tags {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid #1e3a8a;
+      background-color: white;
+      cursor: pointer;
+      color: #1e3a8a;
+      font-weight: 500;
+    }
+
+    .tag:hover {
+      background-color: #1e3a8a;
+      color: white;
+    }
+
+    .tag.active {
+      background-color: #1e3a8a;
+      color: white;
+    }
+
+    .tag.active:hover {
+      background-color: #c3dcff;
+      color: #1e3a8a;
+    }
+
+    .add-product-btn {
+      margin-top: 1rem;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add-product-btn:hover {
+      background-color: #1e3a8a;
+      color: white;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .product-card {
+      background-color: #bfdbfe;
+      border-radius: 15px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: scale(1.1);
+      transition-duration: 0.3s;
+    }
+
+    .product-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card h3 {
+      margin: 0.5rem 0;
+      color: #1e3a8a;
+      font-size: 1.1rem;
+    }
+
+    .product-card p {
+      font-size: 0.9rem;
+      color: #1f2937;
+    }
+
+    .edit-btn {
+      margin-top: 0.5rem;
+      background-color: #1e3a8a;
+      color: white;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .edit-btn:hover {
+      background-color: #3b82f6;
+      color: white;
+    }
+
+    .catalog-card {
+      background-color: #cfe2ff;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    .trash-image {
+      width: 66px;
+      height: 66px;
+      transform: translateX(800px) translateY(380px);
+      border-radius: 24px;
+    }
+    .trash-image:hover {
+      background-color: #15388f;
+      color: white;
+    }
+
+    .card-content {
+      text-align: center;
+    }
+
+    .product-title {
+      font-weight: bold;
+      color: #0d3b66;
+    }
+
+    .product-description {
+      font-size: 0.85rem;
+      color: #333;
+      max-height: 4.5em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .open-modal {
+      margin-top: 0.5rem;
+      background-color: #0038a8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .open-modal:hover {
+      background-color: #002b82;
+    }
+
+    #charCount {
+      align-self: flex-start;
+      font-size: 14px;
+      color: #ff1100;
+      position: fixed;
+      transform: translateX(450px) translateY(220px);
+      font-family: Poppins, sans-serif;
+      font-weight: 100px;
+    }
+
+    #price,
+    #category {
+      color: #15388f;
+    }
+
+    #productName::placeholder {
+      color: #15388f;
+      font-size: 40px;
+      font-weight: 700;
+      font-family: Poppins, sans-serif;
+      position: relative;
+      text-align: center;
+    }
+
+    #addBtn {
+      padding: 12px 24px;
+      background-color: #15388f;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: Poppins, sans-serif;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    #addBtn:hover:enabled {
+      background-color: #c3dcff;
+      color: #15388f;
+    }
+
+    #addBtn:disabled {
+      background-color: #999999;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  </style>
+
+  <aside class="sidebar">
+    <button style="border: none; background-color: white;" class="logo">
+      <img src="W biru.png" />
+    </button>
+    <button class="finder">
+      <img src="Group 1000002072.png"></button>
+    <button class="chat">
+      <img src="Union.png" />
+    </button>
+    <button class="exit">
+      <img src="Group 7.png">
+    </button>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1>Admin Dashboard</h1>
+      <h2>Manage Products</h2>
+    </header>
+    <section class="category-filters">
+      <span>Categories</span>
+      <div class="tags">
+        <button class="tag active">Ikan</button>
+        <button class="tag">Obat Ikan</button>
+        <button class="tag">Makanan Ikan</button>
+        <button class="tag">Peralatan Aquarium</button>
+        <button class="tag">+</button>
+      </div>
+      <button id="openModalBtn" class="add-product-btn">+ Add Product</button>
+    </section>
+
+    <section class="product-grid">
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+      <div class="product-card">
+        <img src="DSCF6720 2.png" class="product-image" />
+        <h3>Ikan Discus</h3>
+        <p>
+          Ikan discus (genus Symphysodon) adalah ikan siklid asli dari lembah sungai Amazon, dike...
+        </p>
+        <button class="edit-btn">Edit</button>
+      </div>
+    </section>
+  </main>
+  </style>
+</head>
+
+<body>
+  <div id="productModal" class="modal hidden">
+    <div class="modal">
+      <span class="close-btn">&times;</span>
+      <!-- Image Upload -->
+      <label for="imageInput">
+        <div class="image-box">
+          <img id="imagePreview" src="" alt="no image" style="max-height: 100%; max-width: 100%; display: none;">
+          <span id="noImageText">no image</span>
+        </div>
+        <input type="file" id="imageInput" hidden accept="image/*">
+
+        <!-- Description -->
+        <textarea id="description" maxlength="500" placeholder="Enter product description..."></textarea>
+        <div id="charCount">Max. 500 Characters</div>
+
+        <!-- Price -->
+        <input id="price" type="number" placeholder="Input price here">
+
+
+        <!-- Category -->
+        <select id="category">
+          <option value="">Select Category</option>
+          <option value="fish">Ikan</option>
+          <option value="food">Makanan Ikan</option>
+          <option value="medicine">Obat Ikan</option>
+          <option value="equipment">Peralatan Aquarium</option>
+        </select>
+
+        <!-- Name and Quantity -->
+        <input type="text" id="productName" placeholder="Name">
+        <div
+          style="font-family: Poppins, sans-serif; font-size: 20px; font-weight: 500; color: #589eff; margin-top: 100px; margin-left: 148px;">
+          Available product</div>
+        <div class="qty-box">
+          <button id="minus">−</button>
+          <div id="qtyDisplay">0</div>
+          <button id="plus">+</button>
+        </div>
+        <img src="icon sampah.png" class="trash-image">
+
+        <!-- Submit -->
+        <button class="submit-btn" id="addBtn" disabled>Tambah Produk</button>
+    </div>
+  </div>
+
+
+
+  <script>
+    // Quantity Counter
+    let qty = 0;
+    const qtyDisplay = document.getElementById('qtyDisplay');
+    document.getElementById('minus').onclick = () => {
+      if (qty > 0) qtyDisplay.textContent = --qty;
+    };
+    document.getElementById('plus').onclick = () => {
+      if (qty < 100) qtyDisplay.textContent = ++qty;
+    };
+
+    // Character Counter
+    const desc = document.getElementById('description');
+    const counter = document.getElementById('charCount');
+    desc.addEventListener('input', () => {
+      counter.textContent = `${desc.value.length}/500 characters`;
+    });
+
+    // Enable Submit if Valid
+    const nameInput = document.getElementById('productName');
+    const priceInput = document.getElementById('price');
+    const addBtn = document.getElementById('addBtn');
+    const selectCategory = document.getElementById('category');
+
+    function validateForm() {
+      const valid = nameInput.value.trim() && priceInput.value.trim();
+      addBtn.disabled = !valid;
+    }
+
+    nameInput.addEventListener('input', validateForm);
+    priceInput.addEventListener('input', validateForm);
+
+    // Image Upload Preview
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('imagePreview');
+    const noImageText = document.getElementById('noImageText');
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          preview.src = reader.result;
+          preview.style.display = 'block';
+          noImageText.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    // Modal open/close logic
+    const modal = document.getElementById('productModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.querySelector('.close-btn');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('active');
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
