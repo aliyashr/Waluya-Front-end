@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Ikan</title>
+    <link rel="stylesheet" href="page 3.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        color: black;
+    }
+
+    .body {
+        padding: 40px;
+        background: linear-gradient(to bottom, #ffffff 70%, #6ab4ff 100%);
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-navbar {
+        height: 40x;
+        margin-right: 10px;
+    }
+
+    .nama-brand {
+        font-weight: 700;
+        color: #22559C;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        margin-left: auto;
+        margin-right: 15px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #22559C;
+        font-weight: 700;
+    }
+
+    .buttons button {
+        margin-left: 15px;
+        padding: 6px 15px;
+        border-radius: 5px;
+        font-weight: 700;
+        color: #22559C;
+        border: 1px solid #22559C;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .login-button {
+        transition: opacity 0.5s;
+    }
+
+    .login-button:hover {
+        opacity: 0.5;
+    }
+
+    .login-button:active {
+        opacity: 0.3;
+    }
+
+    .buttons .register-button {
+        color: white;
+        background-color: #22559C;
+        transition: opacity 1s;
+    }
+
+    .register-button:hover {
+        opacity: 0.7;
+    }
+
+    .register-button:active {
+        opacity: 0.5;
+    }
+
+    .filter-button {
+        margin-left: 60px;
+        border: none;
+        cursor: pointer;
+        background-color: white;
+        width: 800px;
+    }
+
+    .filter-text {
+        margin-left: 90px;
+        color: #22559C;
+        margin-top: -70px;
+        font-size: 36px;
+    }
+
+    .size-text {
+        color: #000000;
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: 100;
+        display: flex;
+        padding: 5px 5px;
+    }
+
+    .size-button {
+        margin-left: 5px;
+        margin-top: 15px;
+        padding: 16px 24px;
+        border-radius: 6px;
+        font-weight: 500;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        background-color: #ebe5fc;
+        display: table-column;
+    }
+
+    .size-button:hover {
+        background-color: #9ca9bb;
+    }
+
+    .color-button {
+        margin-left: 5px;
+        margin-top: 15px;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        background-color: #ebe5fc;
+        display: inline-flex;
+        text-align: center;
+    }
+
+    .color-button:hover {
+        background-color: #9ca9bb;
+    }
+
+    .circle {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .dark-gradient {
+        background: linear-gradient(to bottom, #797979, #000);
+    }
+
+    .light-gradient {
+        background: linear-gradient(to bottom, #ffffff, #797979);
+    }
+
+    .section-title {
+        text-align: center;
+        color: #22559C;
+        margin-top: 20px;
+        font-size: 47px;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border: 2px solid #15388f;
+        border-radius: 30px;
+        padding: 10px 20px;
+        width: 1325px;
+        margin: 0 auto 40px;
+        /* Tengah dan beri jarak bawah */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar .search-icon {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        margin-right: 10px;
+    }
+
+    .search-bar input {
+        border: none;
+        outline: none;
+        flex: 1;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+
+    .card {
+        background-color: #C3DCFF;
+        border-radius: 12px;
+        width: 100%;
+        padding: 15px;
+        max-width: 300.36px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-image {
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .card-image img {
+        width: 100%;
+        max-width: 190px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 10 5px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-content h3 {
+        color: #22559C;
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .card-content p {
+        color: #22559C;
+        font-size: 15px;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        /* Batasi ke 3 baris */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .card-description {
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+    }
+
+    .footer-gradient {
+        background: linear-gradient(to top, #6ab4ff, #ffffff);
+        /* Membalikkan arah gradasi */
+        text-align: center;
+        padding: 150px 0;
+        /* Menambah padding atas dan bawah agar teks lebih turun */
+        color: #000;
+        font-size: 14px;
+    }
+
+    .slider-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .price-label {
+        font-size: 20px;
+        font-weight: 100;
+        width: 80px;
+        text-align: center;
+    }
+
+    input[type=range] {
+        width: 500px;
+        height: 8px;
+        border-radius: 4px;
+        background: #15388f;
+        outline: none;
+        position: relative;
+    }
+
+    input[type=range]::-moz-range-track {
+        background: #15388f;
+        height: 8px;
+        border-radius: 4px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        width: 40px;
+        height: 40px;
+        background: #15388f;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Firefox fallback */
+    input[type=range]::-ms-track {
+        width: 100%;
+        height: 8px;
+        background: #15388f;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: #15388f;
+        border-radius: 4px;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: #15388f;
+        border-radius: 4px;
+    }
+
+    input[type=range]::-ms-thumb {
+        width: 40px;
+        height: 40px;
+        background: #15388f;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+    }
+
+    #priceSlider {
+        width: 549.04px;
+        height: 8px;
+        background: transparent;
+        cursor: pointer;
+        appearance: none;
+        /* Hide default styling on WebKit */
+    }
+
+    /* Track styling - Chrome/Safari */
+    #priceSlider::-webkit-slider-runnable-track {
+        background: #163884;
+        height: 4px;
+        border-radius: 4px;
+    }
+
+    /* Thumb styling - Chrome/Safari */
+    #priceSlider::-webkit-slider-thumb {
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background: #badaff;
+        border: 2px solid #333;
+        border-radius: 50%;
+        margin-top: -8px;
+        /* align with track vertically */
+        cursor: pointer;
+    }
+
+    /* Track styling - Firefox */
+    #priceSlider::-moz-range-track {
+        background: #163884;
+        height: 8px;
+        border-radius: 4px;
+    }
+
+    /* Thumb styling - Firefox */
+    #priceSlider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        background: #badaff;
+        border: 2px solid #333;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    #priceValue {
+        font-size: 20px;
+        font-weight: 100;
+        width: 100px;
+        text-align: center;
+        color: #000000;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-logo">
+                <img src="W biru.png" alt="Waluya logo" class="logo-navbar">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Produk Kami</a></li>
+                <li><a href="#">Wishlist Kami</a></li>
+            </ul>
+            <div class="buttons">
+                <button class="login-button">Login</button>
+                <button class="register-button">Register</button>
+            </div>
+            </ul>
+        </nav>
+    </header>
+
+    <h1 class="section-title">IKAN</h1>
+    <div class="search-bar">
+        <img src="bx-search-alt-2.svg" alt="Search Icon" class="search-icon">
+        <input type="text" placeholder="Search here">
+    </div>
+    <div class="filter-button">
+        <img src="filter button.png" style="width: 80px;">
+        <h1 class="filter-text">Filtering</h1>
+        <h2 class="size-text">by Size (cm)</h2>
+        <button class="size-button">Less than 10</button>
+        <button class="size-button">10 - 20</button>
+        <button class="size-button">21 - 30</button>
+        <button class="size-button">More than 30</button>
+        <h3 class="size-text">by Color</h3>
+        <button class="color-button">
+            <div class="circle dark-gradient"></div><span
+                style="color: #000000;font-weight: 100; display: table-column-group; margin-top: 10px;">Darker
+                Color</span>
+        </button>
+        <button class="color-button">
+            <div class="circle light-gradient"></div><span
+                style="color: #000000;font-weight: 100; display: table-column-group; margin-top: 10px;">Lighter
+                Color</span>
+        </button>
+        <h4 class="size-text">by Price (Rupiah)</h4>
+        <div class="slider-container">
+            <div class="price-label" id="priceValue">0</div>
+            <input type="range" id="priceSlider" min="0" max="500" step="1" value="0">
+            <div class="price-label">500,000</div>
+        </div>
+    </div>
+
+    <script>
+        let currentPrice = 0;
+        const priceLabel = document.getElementById('priceValue');
+        const slider = document.getElementById('priceSlider');
+        let lastSliderValue = parseInt(slider.value);
+
+        slider.addEventListener('input', () => {
+            const basePrice = 0;
+            const multiplier = 1000;
+            const currentValue = parseInt(slider.value);
+            const newPrice = basePrice + currentValue * multiplier;
+            priceLabel.textContent = newPrice.toLocaleString();
+        });
+    </script>
+
+    <div class="card-container">
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 13</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content" id="cardContent">
+                <h3>Ikan Discus 14</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 15</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 16</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 17</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 18</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 19</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 20</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 21</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 22</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 23</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 24</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 25</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 26</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 27</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 28</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 29</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 30</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 31</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 32</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 33</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 34</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 35</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image">
+                <img src="DSCF6720 2.png">
+            </div>
+            <div class="card-content">
+                <h3>Ikan Discus 36</h3>
+                <p>Discus adalah salah satu ikan hias yang paling indah dan paling sering dipelihara.
+                    Mereka termasuk dalam genus Symphysodon,
+                    yang pada dasarnya mengandung tiga spesies: Heckel Discus (S. discus), Green Discus (S.
+                    aequifasciatus), dan Blue and Brown Discus (S. haraldi).
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function getPageList(totalPages, page, maxLength) {
+            function range(start, end) {
+                return Array.from(Array(end - start + 1), (_, i) => i + start);
+            }
+
+            var sideWidth = maxLength < 9 ? 1 : 2;
+            var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+            var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+            if (totalPages <= maxLength) {
+                return range(1, totalPages);
+            }
+
+            if (page <= maxLength - sideWidth - 1 - rightWidth) {
+                return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+            }
+
+            if (page >= totalPages - sideWidth - 1 - rightWidth) {
+                return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+            }
+            return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+        }
+
+        $(function () {
+            var numberOfItemns = $(".card-container .card").length;
+            var limitPerPage = 12;
+            var totalPages = Math.ceil(numberOfItemns / limitPerPage);
+            var paginationSize = 7;
+            var currentPage;
+
+            function showPage(whichPage) {
+                if (whichPage < 1 || whichPage > totalPages) return false;
+                currentPage = whichPage;
+
+                $(".card-container .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+                $(".pagination li").slice(1, -1).remove();
+
+                getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                    $("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
+                        .toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
+                            .attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-page");
+                });
+
+                $(".previous-page").toggleClass("disable", currentPage == 1);
+                $(".next-page").toggleClass("disable", currentPage === totalPages);
+                return true;
+            }
+
+            $(".pagination").append(
+                $("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("<")),
+                $("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text(">"))
+            );
+
+            $(".card-container").show();
+            showPage(2);
+
+            $(document).on("click", ".pagination li.current-page:not(.active)", function () {
+                return showPage(+$(this).text());
+            });
+
+            $(".next-page").on("click", function () {
+                return showPage(currentPage + 1);
+            });
+
+            $(".previous-page").on("click", function () {
+                return showPage(currentPage - 1);
+            });
+        });
+    </script>
+
+</body>
+<footer class="footer-gradient">
+    <p>© 2025 – 2029 Waluya Aquarium. All Rights Reserved.</p>
+</footer>
+
+</html>
